@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block head %}
+{% include 'include/yandex_api_form.html' %}
+{% endblock %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+{% include 'include/search_form.html'%}
+{% endblock %}
