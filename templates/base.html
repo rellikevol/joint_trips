@@ -1,19 +1,57 @@
-<!DOCTYPE html>
 {% load static %}
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% block head %}
-  {% endblock %}
-<title>
-  {% block title %}
-  {% endblock %}
-</title>
+  {% endblock%}
 </head>
 <body>
-<div align="center">
-  {% block content %}
-  {% endblock %}
-</div>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logo.png" alt="Логотип BlaBlaCar">
+      </div>
+      <ul class="navigation-menu">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Поездки</a></li>
+        <li><a href="how_it_works.html">Как это работает</a></li>
+        <li><a href="#">Безопасность</a></li>
+        <li><a href="#">Регистрация</a></li>
+        <li><a href="#">Вход</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1>Путешествуйте вместе, куда угодно</h1>
+      <p>Присоединяйтесь к миллионам путешественников и найдите поездку в нужном направлении</p>
+    </div>
+    {% block header %}
+    {% endblock %}
+  </header>
+
+  <main>
+    {% block main %}
+    {% endblock%}
+  </main>
+
+  <footer>
+    <ul class="footer-menu">
+      <li><a href="#">О нас</a></li>
+      <li><a href="#">Контакты</a></li>
+      <li><a href="#">Условия использования</a></li>
+      <li><a href="#">Политика конфиденциальности</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#"><img src="facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="twitter.png" alt="Twitter"></a>
+      <a href="#"><img src="instagram.png" alt="Instagram"></a>
+    </div>
+  </footer>
 </body>
 </html>

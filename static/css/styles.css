@@ -1,0 +1,310 @@
+/* styles.css */
+
+/* Глобальные стили */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стили шапки */
+header {
+  background-color: #ff5722;
+  padding: 20px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.navigation-menu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-menu li {
+  margin-left: 20px;
+}
+
+.navigation-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Стили героя */
+.hero {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.hero p {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.search-form input[type="text"],
+.search-form input[type="date"],
+.search-form input[type="number"] {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #fff;
+  color: #ff5722;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: #f0f0f0;
+  color: #ff5722;
+}
+
+/* Стили основного блока */
+main {
+  background-color: #f0f0f0;
+  padding: 50px 0;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.feature {
+  text-align: center;
+  margin: 20px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.feature img {
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.feature h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.feature p {
+  font-size: 18px;
+  color: #666;
+}
+/* Стили блока "Как это работает" */
+.how-it-works {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.how-it-works h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.how-it-works p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Стили подвала */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-menu li {
+  margin-left: 20px;
+}
+
+.footer-menu li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-icons a {
+  margin-left: 10px;
+}
+
+.social-icons img {
+  height: 30px;
+}
+
+
+/* Стили страницы с результатами поиска поездок */
+.hero1 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.search-heading {
+  font-size: 36px;
+  margin: 0;
+  font-weight: bold;
+  color: #ff8a65; /* Изменил цвет на менее яркий */
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column; /* Изменил направление на вертикальное */
+  align-items: center; /* Добавил выравнивание по центру */
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.result {
+  text-align: left; /* Изменил выравнивание текста на левый */
+  margin: 10px 20px; /* Изменил отступ от верха карточки */
+  padding: 20px;
+  border-radius: 8px;
+  width: 750px; /* Установил ширину карточки в 750px */
+  height: 160px; /* Установил высоту карточки в 160px */
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s; /* Добавил анимацию изменения фона */
+  overflow: hidden; /* Добавил свойство для скрытия текста, выходящего за границы */
+  background-color: #fff; /* Установил фон карточки */
+}
+
+.result:hover {
+  transform: translateY(-5px);
+  background-color: #fafafa; /* Изменил фон при наведении на #fafafa */
+}
+
+.result a {
+  text-decoration: none; /* Добавил для удаления подчеркивания */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.result-content {
+  padding: 10px;
+}
+
+.result-title {
+  font-size: 20px; /* Изменил размер шрифта заголовка */
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-decoration: none; /* Добавил для удаления подчеркивания */
+  color: #333;
+}
+
+.result-info {
+  font-size: 14px; /* Изменил размер шрифта информации */
+  color: #666;
+  margin-bottom: 5px; /* Уменьшил расстояние между строками */
+  line-height: 1.2; /* Изменил значение для уменьшения расстояния между строками */
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+/* Стили формы добавления поездки */
+.add-trip-form {
+  text-align: center;
+  padding: 20px;
+}
+
+.add-trip-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-trip-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-trip-form .form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.add-trip-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.add-trip-form input[type="text"],
+.add-trip-form input[type="date"],
+.add-trip-form input[type="time"],
+.add-trip-form input[type="number"] {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-trip-form button {
+  padding: 10px 20px;
+  background-color: #ff8a65;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-trip-form button:hover {
+  background-color: #ff7043;
+}

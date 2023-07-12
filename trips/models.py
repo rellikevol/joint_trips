@@ -17,7 +17,7 @@ class Trip(models.Model):
     in_process = models.BooleanField(default=True, verbose_name='Активна')
 
     def __str__(self):
-        return f"{self.point_from} - {self.point_to}, {self.date}"
+        return f"{self.point_from} ➡ {self.point_to}"
 
     class Meta:
         verbose_name = "Поездка"

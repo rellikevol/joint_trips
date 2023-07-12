@@ -3,6 +3,7 @@ from trips.models import Trip
 from trips.utils.yandex_utils import get_geocode, get_locality_name, str_to_geocode
 from trips.utils.search_utils import search_in_trips
 from django.views import generic
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -35,7 +36,7 @@ def trips_search(request):
                     context['date_correct'] = result['date_correct']
 
                 context['is_search_had_result'] = result['is_success']
-                return render(request, 'trips/search.html', context=context)
+                return render(request, 'trips/search_page.html', context=context)
             else:
                 context['is_lucky'] = False
 
@@ -45,7 +46,7 @@ def trips_search(request):
                 if not locality_from['other'] and locality_to['other']:
                     context['error'] = 'Что-то пошло не так...'
 
-                return render(request, 'trips/search.html', context=context)
+                return render(request, 'trips/search_page.html', context=context)
         else:
             context['is_lucky'] = False
 
@@ -55,6 +56,22 @@ def trips_search(request):
             if not geo_from['other'] or not geo_to['other']:
                 context['error'] = 'Что-то пошло не так...'
 
-            return render(request, 'trips/search.html', context=context)
+            return render(request, 'trips/search_page.html', context=context)
     else:
-        return render(request, 'trips/search.html')
+        return render(request, 'trips/search_page.html')
+
+
+def add_trip(request):
+    if request.method == 'POST':
+
+        context = {'suggest1': request.POST.get('suggest1'),
+                   'suggest2': request.POST.get('suggest2'),
+                   'date': request.POST.get('date'),
+                   'space': request.POST.get('space')}
+
+        #проверки
+        #перенести проверки в validators
+
+        return render(request, 'trips/add_trip.html', context=context)
+    else:
+        return render(request, 'trips/add_trip.html')

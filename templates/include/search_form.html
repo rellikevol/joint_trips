@@ -1,24 +1,16 @@
 {% load static %}
-<form action="{% url 'trips-search' %}" method="post">
+<form action="{% url 'trips-search' %}" method="post" class="search-form">
     {% csrf_token %}
     {% if request.method == 'POST'%}
-        <label for="suggest1" class="form-label">Откуда:</label>
         <input type="text" id="suggest1" name="suggest1" value="{{ suggest1 }}" required >
-        <label for="suggest2" class="form-label">Куда:</label>
         <input type="text" id="suggest2" name="suggest2" value="{{ suggest2 }}" required >
-        <label for="date">Дата:</label>
         <input type="date" id="date" name="date" value="{{ date }}" required />
-        <label for="space">Количество мест:</label>
         <input type="number" step="1" min="1" max="8" id="space" name="space" value="{{ space }}" required />
     {% else %}
-        <label for="suggest1" class="form-label">Откуда:</label>
-        <input type="text" id="suggest1" name="suggest1" required >
-        <label for="suggest2" class="form-label">Куда:</label>
-        <input type="text" id="suggest2" name="suggest2" required >
-        <label for="date">Дата:</label>
-        <input type="date" id="date" name="date" required />
-        <label for="space">Количество мест:</label>
-        <input type="number" step="1" min="1" max="8" value="1" id="space" name="space" required />
+        <input type="text" id="suggest1" name="suggest1" placeholder="Откуда" required>
+        <input type="text" id="suggest2" name="suggest2" placeholder="Куда" required>
+        <input type="date" id="date" name="date" placeholder="Дата" required>
+        <input type="number" step="1" min="1" max="8" value="1" id="space" name="space" placeholder="Количество мест" required>
     {% endif %}
-        <button type="submit" class="btn btn-success">Искать</button>
+        <button type="submit" class="cta-button">Найти поездку</button>
 </form>
