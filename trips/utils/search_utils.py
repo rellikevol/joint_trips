@@ -6,7 +6,6 @@ def search_in_trips(context):
                                     locale_from__icontains=context['locality_from'],
                                     locale_to__icontains=context['locality_to'],
                                     empty_spaces__gte=context['space'])
-
     search_day = datetime.strptime(context['date'], '%Y-%m-%d')
 
     if len(all_results) > 0:
@@ -17,5 +16,7 @@ def search_in_trips(context):
             any_day_results = all_results.filter(date__gte=search_day)
             if len(any_day_results) > 0:
                 return {'is_success': True, 'result': any_day_results, 'date_correct': False}
+            else:
+                return {'is_success': False, 'result': any_day_results, 'date_correct': False}
     else:
         return {'is_success': False,'result': all_results, 'date_correct': False}

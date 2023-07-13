@@ -19,12 +19,13 @@
         <img src="logo.png" alt="Логотип BlaBlaCar">
       </div>
       <ul class="navigation-menu">
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Поездки</a></li>
-        <li><a href="how_it_works.html">Как это работает</a></li>
-        <li><a href="#">Безопасность</a></li>
-        <li><a href="#">Регистрация</a></li>
-        <li><a href="#">Вход</a></li>
+        <li><a href="{% url 'index-page' %}">Главная</a></li>
+        <li><a href="{% url 'how-it-works' %}">Как это работает</a></li>
+        <li><a href="{% url 'register' %}">Регистрация</a></li>
+        <li><a href="{% url 'enter' %}">Вход</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'add-trip' %}">Добавить поездку</a></li>
+        {% endif %}
       </ul>
     </nav>
     <div class="hero">

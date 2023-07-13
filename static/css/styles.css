@@ -72,7 +72,6 @@ header {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 }
-
 .cta-button {
   display: inline-block;
   background-color: #fff;
@@ -147,6 +146,7 @@ main {
   color: #666;
   margin-bottom: 40px;
 }
+
 
 /* Стили подвала */
 footer {
@@ -306,5 +306,112 @@ footer {
 }
 
 .add-trip-form button:hover {
+  background-color: #ff7043;
+}
+
+/* Стили формы регистрации */
+.registration-form {
+  text-align: center;
+  padding: 20px;
+}
+
+.registration-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.registration-form .form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.registration-form form {
+  width: 400px;
+  text-align: left;
+}
+
+.registration-form .form-group {
+  margin-bottom: 20px;
+}
+
+.registration-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.registration-form button {
+  padding: 12px 30px; /* Изменено */
+  background-color: #ff8a65;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block; /* Добавлено */
+  margin: 0 auto; /* Добавлено */
+}
+
+.registration-form button:hover {
+  background-color: #ff7043;
+}
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
+
+/* Стили формы входа */
+.login-form {
+  text-align: center;
+  padding: 20px;
+}
+
+.login-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  font-weight: bold;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #ff8a65;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
   background-color: #ff7043;
 }
