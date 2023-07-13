@@ -42,17 +42,14 @@
   </main>
 
   <footer>
-    <ul class="footer-menu">
-      <li><a href="#">О нас</a></li>
-      <li><a href="#">Контакты</a></li>
-      <li><a href="#">Условия использования</a></li>
-      <li><a href="#">Политика конфиденциальности</a></li>
+  <div class="footer-menu">
+    <ul>
+      <li><a href="{% url 'about-us' %}">О нас</a></li>
+      <li><a href="{% url 'contacts' %}">Контакты</a></li>
+      <li><a href="{% url 'terms-of-use' %}">Условия использования</a></li>
+      <li><a href="{% url 'privacy-policy' %}">Политика конфиденциальности</a></li>
     </ul>
-    <div class="social-icons">
-      <a href="#"><img src="facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="twitter.png" alt="Twitter"></a>
-      <a href="#"><img src="instagram.png" alt="Instagram"></a>
-    </div>
-  </footer>
+  </div>
+</footer>
 </body>
 </html>

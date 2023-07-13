@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+О нас
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+  <div class="contact-us">
+      <div class="contact-us-card">
+        <img src="contact-us-image.jpg" alt="Контакты">
+        <div class="contact-us-content">
+          <h1>Контакты</h1>
+          <p>Телефон: +7 123 456-7890</p>
+          <p>Email: info@example.com</p>
+          <p>Адрес: г. Москва, ул. Примерная, 123</p>
+        </div>
+      </div>
+    </div>
+{% endblock%}

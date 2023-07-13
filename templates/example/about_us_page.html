@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+О нас
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+   <div class="about-us">
+  <div class="about-us-card">
+    <img src="about-us-image.jpg" alt="О нас">
+    <div class="about-us-content">
+      <h1>О нас</h1>
+      <p>Мы - команда профессионалов, создающая лучший сервис по поиску и предоставлению попутных поездок. Наша цель - сделать путешествия удобными, доступными и экологически чистыми.</p>
+      <p>Мы стремимся соединить людей, которым нужно путешествовать в одном направлении, чтобы они могли разделить расходы на транспорт и сделать свои поездки приятными и экономически выгодными.</p>
+      <p>Присоединяйтесь к нашему сообществу и начинайте путешествовать вместе с нами!</p>
+    </div>
+  </div>
+</div>
+{% endblock%}

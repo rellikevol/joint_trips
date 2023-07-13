@@ -147,41 +147,37 @@ main {
   margin-bottom: 40px;
 }
 
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
 
 /* Стили подвала */
 footer {
   background-color: #333;
-  color: #fff;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  color: #fff;
 }
 
-.footer-menu {
-  list-style: none;
-  display: flex;
-  margin: 0;
+.footer-menu ul {
+  display: inline-block;
   padding: 0;
+  margin: 0;
 }
 
 .footer-menu li {
-  margin-left: 20px;
+  display: inline;
+  margin-right: 10px;
 }
 
-.footer-menu li a {
-  color: #fff;
+.footer-menu a {
   text-decoration: none;
+  color: #fff;
 }
 
-.social-icons a {
-  margin-left: 10px;
+.footer-menu a:hover {
+  text-decoration: underline;
 }
-
-.social-icons img {
-  height: 30px;
-}
-
 
 /* Стили страницы с результатами поиска поездок */
 .hero1 {
@@ -414,4 +410,170 @@ footer {
 
 .login-form button:hover {
   background-color: #ff7043;
+}
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
+
+/* Стили блока "О нас" */
+.about-us {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.about-us-card {
+  max-width: 800px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.about-us-card img {
+  width: 100%;
+  height: auto;
+}
+
+.about-us-content {
+  padding: 20px;
+}
+
+.about-us h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-us p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.about-us p:last-child {
+  margin-bottom: 0;
+}
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
+
+/* Стили блока "Контакты" */
+.contact-us {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.contact-us-card {
+  max-width: 800px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contact-us-card img {
+  width: 100%;
+  height: auto;
+}
+
+.contact-us-content {
+  padding: 20px;
+}
+
+.contact-us h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-us p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.contact-us p:last-child {
+  margin-bottom: 0;
+}
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
+
+/* Стили блока "Условия использования" */
+.terms-of-use {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.terms-of-use-card {
+  max-width: 800px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.terms-of-use-content {
+  padding: 20px;
+}
+
+.terms-of-use h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.terms-of-use p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.terms-of-use p:last-child {
+  margin-bottom: 0;
+}
+/* styles.css */
+
+/* Глобальные стили (остаются без изменений) */
+
+/* Стили блока "Политика конфиденциальности" */
+.privacy-policy {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.privacy-policy-card {
+  max-width: 800px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.privacy-policy-content {
+  padding: 20px;
+}
+
+.privacy-policy h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.privacy-policy p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.privacy-policy p:last-child {
+  margin-bottom: 0;
 }
