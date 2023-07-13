@@ -35,7 +35,7 @@
                 <section class="search-results">
                     {% for trip in result %}
                       <div class="result">
-                        <a href="#">
+                        <a href="{% url 'trip-detail' trip.id %}">
                           <div class="result-content">
                             <h2 class="result-title">{{ trip }}</h2>
                             <p class="result-info"><span class="bold-text">Дата:</span> {{ trip.date }}</p>

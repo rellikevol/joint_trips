@@ -3,6 +3,7 @@
 .idea
 /venv
 /media
+/static/img
 __pycache__/
 /__pycache__/
 */__pycache__/

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+<div class="trip-card">
+  <div class="trip-card-content">
+    <h2>{{ trip }}</h2>
+    <p>Дата: {{ trip.date }}</p>
+    <p>Время: {{ trip.time }}</p>
+    <p>Свободные места: {{ trip.empty_spaces }}</p>
+    <p>Цена: $50</p>
+  </div>
+  <div class="trip-card-footer">
+    <button class="button">Забронировать поездку</button>
+  </div>
+</div>
+{% endblock%}
+
+

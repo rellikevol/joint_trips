@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from trips.models import Trip
 from trips.utils.yandex_utils import get_geocode, get_locality_name, str_to_geocode
-from trips.utils.search_utils import search_in_trips
+from trips.utils.trips_db_utils import search_in_trips, append_trip
 from django.views import generic
 from django.urls import reverse_lazy
 
@@ -67,11 +67,44 @@ def add_trip(request):
         context = {'suggest1': request.POST.get('suggest1'),
                    'suggest2': request.POST.get('suggest2'),
                    'date': request.POST.get('date'),
-                   'space': request.POST.get('space')}
+                   'time': request.POST.get('time'),
+                   'space': request.POST.get('seats'),
+                   'is_lucky': True}
 
-        #проверки
-        #перенести проверки в validators
+        geo_from = get_geocode(request.POST.get('suggest1'))
+        geo_to = get_geocode(request.POST.get('suggest2'))
+
+        if geo_from['status'] and geo_to['status']:
+            context['geo_from'] = True
+            context['geo_to'] = True
+            context['geo_from_data'] = geo_from['code']
+            context['geo_to_data'] = geo_to['code']
+
+            result = append_trip(context)
+
+            if result['status']:
+                return redirect('trip-detail', pk=result['pk'])
+            else:
+                context['is_lucky'] = False
+                return render(request, 'trips/add_trip.html', context=context)
+        else:
+            if not geo_from['status']:
+                context['geo_from'] = False
+            else:
+                context['geo_from'] = True
+
+            if not geo_to['status']:
+                context['geo_to'] = False
+            else:
+                context['geo_to'] = True
 
         return render(request, 'trips/add_trip.html', context=context)
     else:
         return render(request, 'trips/add_trip.html')
+
+
+class TripDetailView(generic.DetailView):
+    model = Trip
+    context_object_name = "trip"
+    template_name = "trips/trip_detail_page.html"
+    lookup_field = 'pk'
