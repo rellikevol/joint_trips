@@ -361,56 +361,7 @@ footer {
 .registration-form button:hover {
   background-color: #ff7043;
 }
-/* styles.css */
 
-/* Глобальные стили (остаются без изменений) */
-
-/* Стили формы входа */
-.login-form {
-  text-align: center;
-  padding: 20px;
-}
-
-.login-form h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.login-form form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-form .form-group {
-  margin-bottom: 20px;
-}
-
-.login-form label {
-  font-weight: bold;
-}
-
-.login-form input[type="email"],
-.login-form input[type="password"] {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-form button {
-  padding: 10px 20px;
-  background-color: #ff8a65;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-form button:hover {
-  background-color: #ff7043;
-}
 /* styles.css */
 
 /* Глобальные стили (остаются без изменений) */
@@ -628,3 +579,120 @@ footer {
 .trip-card .button:hover {
   background-color: #ff4343;
 }
+/* styles.css */
+/* страница входа */
+/* styles.css */
+/* styles.css */
+
+.login-form-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff5e5e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #ff4343;
+}
+
+
+/* стили ошибок регистрации */
+.error-messages {
+  background-color: #ffcccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error-messages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: red;
+}
+
+.error-messages li {
+  margin-bottom: 5px;
+}
+/* успешная регистрация */
+
+.success-message {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.success-message h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  margin-bottom: 20px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff5e5e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #ff4343;
+}
+

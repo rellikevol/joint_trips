@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="registration-form">
+      <h1>Регистрация</h1>
+      <div class="form-wrapper">
+        <form action="{% url 'register' %}" method="post">
+          {% csrf_token %}
+          {% if form.errors %}
+              <div class="error-messages">
+                <ul>
+                  {% for i in errors %}
+                  <li>{{ i }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+          {% endif %}
+          {% if request.method == 'POST' %}
+            <div class="form-group">
+              <label for="username">Имя пользователя:</label>
+              <input type="text" id="username" name="username" required value="{{ username }}">
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" required value="{{ email }}">
+            </div>
+          {% else %}
+            <div class="form-group">
+              <label for="username">Имя пользователя:</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="password1">Пароль:</label>
+            <input type="password" id="password1" name="password1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password2">Подтверждение пароля:</label>
+            <input type="password" id="password2" name="password2" required>
+          </div>
+
+          <button type="submit">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+{% endblock%}

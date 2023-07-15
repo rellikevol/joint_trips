@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+<body>
+  <div class="login-form-container">
+    <h1 class="login-form-title">Вход</h1>
+    {% if form.errors %}
+      <p>Ваши логин или пароль не совпадают, попробуйте ещё раз...</p>
+    {% endif %}
+    <div class="login-form-wrapper">
+      <form class="login-form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Имя пользователя:</label>
+          {{ form.username }}
+        </div>
+
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          {{ form.password }}
+        </div>
+        <button type="submit" class="login-form-submit">Войти</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock%}

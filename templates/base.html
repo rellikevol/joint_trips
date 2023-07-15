@@ -21,10 +21,14 @@
       <ul class="navigation-menu">
         <li><a href="{% url 'index-page' %}">Главная</a></li>
         <li><a href="{% url 'how-it-works' %}">Как это работает</a></li>
-        <li><a href="{% url 'register' %}">Регистрация</a></li>
-        <li><a href="{% url 'enter' %}">Вход</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'add-trip' %}">Добавить поездку</a></li>
+        <li><a href="{% url 'profile' %}">Профиль</a></li>
+        <li><a href="#">Мои поездки</a></li>
+        <li><a href="{% url 'logout' %}">Выход</a></li>
+        {% else %}
+        <li><a href="{% url 'register' %}">Регистрация</a></li>
+        <li><a href="{% url 'login' %}">Вход</a></li>
         {% endif %}
       </ul>
     </nav>
