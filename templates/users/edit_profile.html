@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block head%}
+{% endblock%}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div class="profile-card">
+  <div class="profile-form">
+    <h2>Редактировать профиль</h2>
+    <form action="{% url 'edit-profile' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if user_form.errors or profile_form.errors %}
+              <div class="error-messages">
+                <ul>
+                  {% for i in errors %}
+                  <li>{{ i }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+      {% endif %}
+      <div class="form-group">
+        <label for="profile-photo">Сменить фото профиля:</label>
+        {{ profile_form.profile_photo }}
+      </div>
+      <div class="form-group">
+        <label for="username">Имя пользователя:</label>
+        {{ user_form.username }}
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        {{ user_form.email }}
+      </div>
+      <div class="form-group">
+        <label for="prefer_conversations">Разговорчивость:</label>
+        {{ profile_form.prefer_conversations }}
+      </div>
+      <div class="form-group">
+        <label for="prefer_music">Музыка:</label>
+        {{ profile_form.prefer_music }}
+      </div>
+      <div class="form-group">
+        <label for="prefer_smoke">Курение:</label>
+        {{ profile_form.prefer_smoke }}
+      </div>
+      <div class="form-group">
+        <label for="prefer_animals">Животные:</label>
+        {{ profile_form.prefer_animals }}
+      </div>
+      <button class="save-btn" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+{% endblock%}

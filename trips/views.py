@@ -62,6 +62,8 @@ def trips_search(request):
 
 
 def add_trip(request):
+    if not request.user.is_authenticated:
+        return redirect('not-register')
     if request.method == 'POST':
 
         context = {'suggest1': request.POST.get('suggest1'),

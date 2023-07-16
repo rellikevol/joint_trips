@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block head%}
+{% include 'include/yandex_api_form.html' %}
+{% endblock%}
+
+{% block header %}
+{% include 'include/search_form.html' %}
+{% endblock %}
+
+{% block main %}
+<div class="profile-message">
+  <h1>Эта страница доступна только зарегистрированным пользователям</h1>
+  <div class="profile-buttons">
+    <a href="{% url 'login' %}" class="profile-btn">Вход</a>
+    <a href="{% url 'register' %}" class="profile-btn">Регистрация</a>
+  </div>
+</div>
+{% endblock%}

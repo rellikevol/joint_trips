@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
 Профиль
-</body>
-</html>
+{% endblock %}
+
+{% block head%}
+{% endblock%}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+
+<div class="profile">
+  <div class="profile-content">
+    <div class="profile-info">
+      <img src="{{ user_profile.profile_photo.url }}" alt="Фото профиля" class="profile-photo">
+      <h3>{{ user_profile.base_user.username }}</h3>
+      <div class="preferences-card">
+        <h4>Предпочтения в поездке</h4>
+        <ul>
+          <li><strong>Разговорчивость:</strong> {{ prefer_conversations }}</li>
+          <li><strong>Музыка:</strong> {{ prefer_music }}</li>
+          <li><strong>Курение:</strong> {{ prefer_smoke }}</li>
+          <li><strong>Животные:</strong> {{ prefer_animals }}</li>
+        </ul>
+      </div>
+      <div class="edit-profile">
+        <a href="{% url 'edit-profile' %}" class="edit-profile-button">Редактировать профиль</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock%}
