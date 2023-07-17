@@ -4,7 +4,9 @@ from trips.utils.yandex_utils import get_locality_name, str_to_geocode
 
 
 def search_in_trips(context):
-    all_results = Trip.objects.filter(in_process=True,
+    all_results = Trip.objects.filter(is_active=True,
+                                      in_process=False,
+                                      is_finished=False,
                                       locale_from__icontains=context['locality_from'],
                                       locale_to__icontains=context['locality_to'],
                                       empty_spaces__gte=context['space'])
@@ -32,6 +34,9 @@ def append_trip(context):
     if not locale_from['status'] or not locale_to['status']:
         return {'status': False, 'pk': -1}
 
+    if not context['form'].is_valid():
+        return {'status': False, 'pk': -1}
+
     trip = Trip.objects.create(locale_from=locale_from['address'],
                                point_from=context['suggest1'],
                                longitude_from=context['geo_from_data']['longitude'],
@@ -44,7 +49,9 @@ def append_trip(context):
                                time=context['time'],
                                spaces=context['space'],
                                empty_spaces=context['space'],
-                               in_process=True
+                               owner=context['owner'],
+                               can_smoke=context['form'].cleaned_data['can_smoke'],
+                               with_animals=context['form'].cleaned_data['with_animals']
                                )
 
     trip.save()

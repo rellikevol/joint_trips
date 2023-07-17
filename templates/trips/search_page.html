@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_tags %}
 
 {% block title %}
 Результаты поиска
@@ -41,7 +42,10 @@
                             <p class="result-info"><span class="bold-text">Дата:</span> {{ trip.date }}</p>
                             <p class="result-info"><span class="bold-text">Время:</span> {{ trip.time }}</p>
                             <p class="result-info"><span class="bold-text">Свободные места:</span> {{ trip.empty_spaces }}</p>
-                            <p class="result-info"><span class="bold-text">Цена:</span> $50</p>
+                              <div class="trip-features">
+                                <div class="trip-feature-smoke">{{ trip.can_smoke|smoke_tag }}</div>
+                                <div class="trip-feature-animals">{{ trip.with_animals|animals_tag }}</div>
+                              </div>
                           </div>
                         </a>
                       </div>

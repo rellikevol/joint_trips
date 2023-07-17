@@ -252,7 +252,9 @@ footer {
   font-weight: bold;
 }
 
+
 /* Стили формы добавления поездки */
+
 .add-trip-form {
   text-align: center;
   padding: 20px;
@@ -284,7 +286,8 @@ footer {
 .add-trip-form input[type="text"],
 .add-trip-form input[type="date"],
 .add-trip-form input[type="time"],
-.add-trip-form input[type="number"] {
+.add-trip-form input[type="number"],
+.add-trip-form select {
   width: 300px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -406,9 +409,6 @@ footer {
 .about-us p:last-child {
   margin-bottom: 0;
 }
-/* styles.css */
-
-/* Глобальные стили (остаются без изменений) */
 
 /* Стили блока "Контакты" */
 .contact-us {
@@ -450,9 +450,7 @@ footer {
 .contact-us p:last-child {
   margin-bottom: 0;
 }
-/* styles.css */
 
-/* Глобальные стили (остаются без изменений) */
 
 /* Стили блока "Условия использования" */
 .terms-of-use {
@@ -489,9 +487,7 @@ footer {
 .terms-of-use p:last-child {
   margin-bottom: 0;
 }
-/* styles.css */
 
-/* Глобальные стили (остаются без изменений) */
 
 /* Стили блока "Политика конфиденциальности" */
 .privacy-policy {
@@ -528,9 +524,6 @@ footer {
 .privacy-policy p:last-child {
   margin-bottom: 0;
 }
-/* styles.css */
-
-/* Глобальные стили (остаются без изменений) */
 
 /* Стили карточки поездки */
 .trip-card {
@@ -579,10 +572,103 @@ footer {
 .trip-card .button:hover {
   background-color: #ff4343;
 }
-/* styles.css */
+.trip-features {
+  display: flex;
+  margin-top: 10px;
+}
+
+.trip-feature-smoke,
+.trip-feature-animals {
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2196f3; /* Синий фон для плашек */
+}
+
+.trip-feature-smoke {
+  margin-right: 10px;
+}
+/* стили карточки водителя при подробном просмотре поездки */
+
+.driver-card {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.driver-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+.driver-avatar:hover {
+  transform: scale(1.1);
+}
+.driver-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: transform 0.3s;
+}
+/* стили пассажиров */
+
+.passengers-card {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.passengers-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.passenger-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.passenger {
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+}
+
+.driver {
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+}
+
+.driver-avatar,
+.passenger-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+
+.passenger-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+  transition: transform 0.3s;
+}
+
+.passenger-avatar:hover,
+.passenger-name:hover {
+  transform: scale(1.1);
+}
+
 /* страница входа */
-/* styles.css */
-/* styles.css */
+
 
 .login-form-container {
   background-color: #f2f2f2;

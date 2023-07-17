@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_tags %}
 
 {% block title %}
 Вход
@@ -7,6 +8,7 @@
 {% block head%}
 {% include 'include/yandex_api_form.html' %}
 {% endblock%}
+
 
 {% block header %}
 {% include 'include/search_form.html' %}
@@ -19,12 +21,49 @@
     <p>Дата: {{ trip.date }}</p>
     <p>Время: {{ trip.time }}</p>
     <p>Свободные места: {{ trip.empty_spaces }}</p>
-    <p>Цена: $50</p>
+     <div class="trip-features">
+      <div class="trip-feature-smoke">{{ trip.can_smoke|smoke_tag }}</div>
+      <div class="trip-feature-animals">{{ trip.with_animals|animals_tag }}</div>
+    </div>
   </div>
   <div class="trip-card-footer">
-    <button class="button">Забронировать поездку</button>
+      <a href="#">
+      <button class="button">Забронировать поездку</button>
+    </a>
+
   </div>
+
+    <div class="driver-card">
+    <h2>Водитель:</h2>
+    <a href="#">
+      <img class="driver-avatar" src="{{ driver_profile.profile_photo.url }}" alt="Фото водителя">
+    </a>
+    <p class="driver-name">{{ trip.owner.username }}</p>
+  </div>
+
+     <div class="passengers-card">
+    <h2>Пассажиры:</h2>
+    <div class="passenger-list">
+
+      {% if has_passengers %}
+        {% for profile in user_profiles %}
+          <div class="passenger">
+            <a href="#">
+              <img class="passenger-avatar" src="{{ profile.profile_photo.url }}" alt="Аватар пассажира">
+            </a>
+            <p class="passenger-name">{{ profile.base_user.username }}</p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Пассажиров пока нет...</p>
+      {% endif %}
+      <!------------------------------------------>
+    </div>
+  </div>
+
+
 </div>
+
 {% endblock%}
 
 

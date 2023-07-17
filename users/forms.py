@@ -15,6 +15,7 @@ class ChangeUserForm(UserChangeForm):
         fields = ['username', 'email']
 
 class ProfileForm(forms.ModelForm):
+
     class Meta:
         model = Profile
         fields = ['profile_photo', 'prefer_conversations',

@@ -48,17 +48,6 @@
           <label for="seats">Свободные места:</label>
           <input type="number" step="1" min="1" max="8" value="1" id="seats" name="seats" value="{{ space }}" required>
         </div>
-
-        <div class="form-group">
-          <label for="can_smoke">Можно ли курить:</label>
-          {{ form.can_smoke }}
-        </div>
-
-        <div class="form-group">
-          <label for="with_animals">Можно ли с животными:</label>
-          {{ form.with_animals }}
-        </div>
-
         <button type="submit">Добавить поездку</button>
         {% else %}
         <div class="form-group">
@@ -83,16 +72,6 @@
         <div class="form-group">
           <label for="seats">Свободные места:</label>
           <input type="number" step="1" min="1" max="8" value="1" id="seats" name="seats" required>
-        </div>
-
-        <div class="form-group">
-          <label for="can_smoke">Можно ли курить:</label>
-          {{ form.can_smoke }}
-        </div>
-
-        <div class="form-group">
-          <label for="with_animals">Можно ли с животными:</label>
-          {{ form.with_animals }}
         </div>
 
         <button type="submit">Добавить поездку</button>

@@ -4,14 +4,16 @@ from trips.utils.yandex_utils import get_geocode, get_locality_name, str_to_geoc
 from trips.utils.trips_db_utils import search_in_trips, append_trip
 from django.views import generic
 from django.urls import reverse_lazy
+from trips.forms import AddTripForm
+from users.models import Profile
 
 
 # Create your views here.
 def my_trips(request):
-    if request.user.is_authenticated:
-        return render(request, 'trips/my_trips.html')
-    else:
+    if not request.user.is_authenticated:
         return redirect('not-register')
+    return render(request, 'trips/my_trips.html')
+
 
 def trips_search(request):
     if request.method == 'POST':
@@ -69,13 +71,15 @@ def add_trip(request):
     if not request.user.is_authenticated:
         return redirect('not-register')
     if request.method == 'POST':
+        add_form = AddTripForm(request.POST)
 
         context = {'suggest1': request.POST.get('suggest1'),
                    'suggest2': request.POST.get('suggest2'),
                    'date': request.POST.get('date'),
                    'time': request.POST.get('time'),
                    'space': request.POST.get('seats'),
-                   'is_lucky': True}
+                   'is_lucky': True,
+                   'form': add_form}
 
         geo_from = get_geocode(request.POST.get('suggest1'))
         geo_to = get_geocode(request.POST.get('suggest2'))
@@ -85,6 +89,7 @@ def add_trip(request):
             context['geo_to'] = True
             context['geo_from_data'] = geo_from['code']
             context['geo_to_data'] = geo_to['code']
+            context['owner'] = request.user
 
             result = append_trip(context)
 
@@ -106,7 +111,8 @@ def add_trip(request):
 
         return render(request, 'trips/add_trip.html', context=context)
     else:
-        return render(request, 'trips/add_trip.html')
+        add_form = AddTripForm()
+        return render(request, 'trips/add_trip.html', {'form': add_form})
 
 
 class TripDetailView(generic.DetailView):
@@ -114,3 +120,22 @@ class TripDetailView(generic.DetailView):
     context_object_name = "trip"
     template_name = "trips/trip_detail_page.html"
     lookup_field = 'pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        driver_profile = Profile.objects.get(base_user=context['trip'].owner)
+
+        profiles = []
+        for i in context['trip'].passengers.all():
+            profiles.append(Profile.objects.get(base_user=i))
+
+        if len(profiles) > 0:
+            context['has_passengers'] = True
+            context['user_profiles'] = profiles
+        else:
+            context['has_passengers'] = False
+
+        context['driver_profile'] = driver_profile
+        return context
+
+
