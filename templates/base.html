@@ -24,7 +24,7 @@
         {% if user.is_authenticated %}
         <li><a href="{% url 'add-trip' %}">Добавить поездку</a></li>
         <li><a href="{% url 'profile' %}">Профиль</a></li>
-        <li><a href="#">Мои поездки</a></li>
+        <li><a href="{% url 'my-trips' %}">Мои поездки</a></li>
         <li><a href="{% url 'logout' %}">Выход</a></li>
         {% else %}
         <li><a href="{% url 'register' %}">Регистрация</a></li>
@@ -55,5 +55,8 @@
     </ul>
   </div>
 </footer>
+{% block js %}
+
+{% endblock %}
 </body>
 </html>

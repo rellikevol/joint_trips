@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Мои поездки
+{% endblock %}
+
+{% block head%}
+{% endblock%}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+
+
+  <div class="my-trips-container">
+    <h1 class="page-title">Мои поездки</h1>
+
+    <div class="tabs">
+      <button class="tab-link active" onclick="openTab(event, 'booked')">Забронированные</button>
+      <button class="tab-link" onclick="openTab(event, 'created')">Созданные мной</button>
+    </div>
+
+    <div id="booked" class="tab active">
+      <div class="card" onclick="handleCardClick('card1')">
+        <h2>Откуда: Москва</h2>
+        <h2>Куда: Санкт-Петербург</h2>
+        <h3>Дата: 2023-07-20</h3>
+        <span class="completed">Завершенная</span>
+      </div>
+      <div class="card" onclick="handleCardClick('card2')">
+        <h2>Откуда: Лондон</h2>
+        <h2>Куда: Париж</h2>
+        <h3>Дата: 2023-07-25</h3>
+        <span class="cancelled">Отменённая</span>
+      </div>
+    </div>
+
+    <div id="created" class="tab">
+      <div class="card" onclick="handleCardClick('card3')">
+        <h2>Откуда: Нью-Йорк</h2>
+        <h2>Куда: Лос-Анджелес</h2>
+        <h3>Дата: 2023-08-01</h3>
+        <span class="bron">Забронированная</span>
+      </div>
+      <div class="card" onclick="handleCardClick('card4')">
+        <h2>Откуда: Рим</h2>
+        <h2>Куда: Флоренция</h2>
+        <h3>Дата: 2023-08-05</h3>
+        <span class="in-progress">В процессе</span>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock%}
+
+{% block js %}
+<script src="{% static 'js/my_trips.js' %}"></script>
+{% endblock %}

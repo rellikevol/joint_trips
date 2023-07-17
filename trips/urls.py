@@ -5,5 +5,6 @@ from trips import views
 urlpatterns = [
     path('search/', views.trips_search, name='trips-search'),
     path('add_trip/', views.add_trip, name='add-trip'),
-    path('<int:pk>', views.TripDetailView.as_view(), name='trip-detail')
+    path('<int:pk>', views.TripDetailView.as_view(), name='trip-detail'),
+    path('ny_trips/', views.my_trips, name='my-trips')
 ]

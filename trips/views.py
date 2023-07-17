@@ -7,7 +7,11 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
-
+def my_trips(request):
+    if request.user.is_authenticated:
+        return render(request, 'trips/my_trips.html')
+    else:
+        return redirect('not-register')
 
 def trips_search(request):
     if request.method == 'POST':

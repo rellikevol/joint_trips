@@ -864,3 +864,149 @@ footer {
   background-color: #e07700;
 }
 
+/* стили старницы мои поездки */
+
+.my-trips-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+h1.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  margin-bottom: 20px;
+
+}
+
+.tab-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.tab-link:hover {
+  background-color: #f0f0f0;
+}
+
+.tab-link:active {
+  background-color: #e0e0e0;
+
+}
+
+.tab-link.disabled {
+  background-color: #e5e5e5;
+  cursor: not-allowed;
+}
+
+.tab-link.active {
+  background-color: #ff8800;
+  color: #fff;
+}
+
+.tab {
+  display: none;
+  padding: 10px;
+}
+
+.tab.active {
+  display: block;
+}
+
+
+.card {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-5px);
+}
+
+.card h2,
+.card h3 {
+  margin: 0;
+  text-align: left;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.cancelled {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.in-progress {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.completed {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.bron {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+
+.completed {
+  background-color: #ff8800; /* Оранжевый цвет */
+}
+
+.in-progress {
+  background-color: #a0d8a0; /* Салатовый цвет (более насыщенный) */
+}
+
+.cancelled {
+  background-color: #ff4500; /* Отмененный цвет */
+}
+
+.bron {
+  background-color: #ffe066; /* Желтый цвет (более насыщенный) */
+}
