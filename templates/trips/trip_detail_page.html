@@ -22,35 +22,61 @@
     <p>Время: {{ trip.time }}</p>
     <p>Свободные места: {{ trip.empty_spaces }}</p>
      <div class="trip-features">
-      <div class="trip-feature-smoke">{{ trip.can_smoke|smoke_tag }}</div>
-      <div class="trip-feature-animals">{{ trip.with_animals|animals_tag }}</div>
+      <div class="trip-feature-smoke">{{ trip.can_smoke|trip_tag }}</div>
+      <div class="trip-feature-animals">{{ trip.with_animals|trip_tag }}</div>
     </div>
   </div>
   <div class="trip-card-footer">
-      <a href="#">
-      <button class="button">Забронировать поездку</button>
-    </a>
-
+        {% if is_owner %}
+            {% if not trip.is_finished %}
+                {% if trip.in_process %}
+                    <a href="#">
+                        <button class="button">Завершить</button>
+                    </a>
+                {% else %}
+                    <a href="#">
+                        <button class="button">Удалить</button>
+                    </a>
+                    <a href="#">
+                        <button class="button">Начать</button>
+                    </a>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if trip.empty_spaces > 0 %}
+                {% if have_sit %}
+                    {% if not trip.is_finished and not trip.in_process %}
+                        <a href="{% url 'cancel-trip' trip.id %}">
+                            <button class="button">Отменить бронь</button>
+                        </a>
+                    {% endif %}
+                {% else %}
+                    {% if not trip.is_finished and not trip.in_process %}
+                        <a href="{% url 'book-trip' trip.id %}">
+                            <button class="button">Забронировать поездку</button>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
   </div>
-
     <div class="driver-card">
     <h2>Водитель:</h2>
-    <a href="#">
+    <a href="{% url 'profile' trip.owner.id %}">
       <img class="driver-avatar" src="{{ trip.owner.profile_photo.url }}" alt="Фото водителя">
     </a>
     <p class="driver-name">{{ trip.owner.base_user.username }}</p>
-
-<div class="passengers-card">
+</div>
+    <div class="passengers-card">
     <h2>Пассажиры:</h2>
     <div class="passenger-list">
-
       {% if has_passengers %}
-        {% for profile in passengers_profiles %}
+        {% for passenger_profile in passengers_profiles %}
           <div class="passenger">
-            <a href="#">
-              <img class="passenger-avatar" src="{{ profile.profile_photo.url }}" alt="Аватар пассажира">
+            <a href="{% url 'profile' passenger_profile.base_user.id %}">
+              <img class="passenger-avatar" src="{{ passenger_profile.profile_photo.url }}" alt="Аватар пассажира">
             </a>
-            <p class="passenger-name">{{ profile.base_user.username }}</p>
+            <p class="passenger-name">{{ passenger_profile.base_user.username }}</p>
           </div>
         {% endfor %}
       {% else %}
@@ -59,9 +85,7 @@
       <!------------------------------------------>
     </div>
   </div>
-
-</div>
-
+      </div>
 {% endblock%}
 
 

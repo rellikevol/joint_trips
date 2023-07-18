@@ -5,22 +5,14 @@ from django.contrib.auth.forms import UserChangeForm
 
 
 # Create your views here.
-def profile(request):
+def profile(request, pk):
+
     if not request.user.is_authenticated:
         return redirect('not-register')
-    context = {}
-    try:
-        user_profile = Profile.objects.get(base_user=request.user.id)
-        context = {'is_login': True,
-                   'user_profile': user_profile,
-                   'prefer_conversations': user_profile.get_prefer_conversations_display(),
-                   'prefer_music': user_profile.get_prefer_music_display(),
-                   'prefer_smoke': user_profile.get_prefer_smoke_display(),
-                   'prefer_animals': user_profile.get_prefer_animals_display()}
-    except Exception:
-        context['is_login'] = False
 
-    return render(request, 'users/profile.html', context=context)
+    user_profile = Profile.objects.get(pk=pk)
+
+    return render(request, 'users/profile.html', context={'profile': user_profile})
 
 
 def register(request):
@@ -72,7 +64,7 @@ def edit_profile(request):
         if profile_form.is_valid() and user_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('profile')
+            return redirect('profile', request.user.id)
         else:
             errors = []
 

@@ -4,7 +4,7 @@ from users import views
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
-    path('profile/', views.profile, name='profile'),
+    path('profile/<int:pk>', views.profile, name='profile'),
     path('register/', views.register, name='register'),
     path('register_done/', views.register_done, name='register-done'),
     path('not_register/', views.not_register, name='not-register'),

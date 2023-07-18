@@ -12,7 +12,11 @@ from users.models import Profile
 def my_trips(request):
     if not request.user.is_authenticated:
         return redirect('not-register')
-    return render(request, 'trips/my_trips.html')
+
+    own = Trip.objects.filter(owner=request.user.id)
+    passenger = Trip.objects.filter(passengers__in=[Profile.objects.get(base_user=request.user.id)])
+
+    return render(request, 'trips/my_trips.html', context={'own': own, 'passenger': passenger})
 
 
 def trips_search(request):
@@ -84,6 +88,8 @@ def add_trip(request):
 
         geo_from = get_geocode(request.POST.get('suggest1'))
         geo_to = get_geocode(request.POST.get('suggest2'))
+        print(geo_from)
+        print(geo_to)
 
         if geo_from['status'] and geo_to['status']:
             context['geo_from'] = True
@@ -133,4 +139,50 @@ class TripDetailView(generic.DetailView):
         else:
             context['has_passengers'] = False
 
+        if context['trip'].owner.id == self.request.user.user_profile.id:
+            context['is_owner'] = True
+        else:
+            context['is_owner'] = False
+
+            if self.request.user.user_profile in passengers:
+                context['have_sit'] = True
+            else:
+                context['have_sit'] = False
+
         return context
+
+
+def book_trip(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('not-register')
+
+    trip = Trip.objects.get(pk=pk)
+    passengers = trip.passengers.all()
+    profile = Profile.objects.get(base_user=request.user.id)
+
+    if trip.empty_spaces > 0 and (profile not in passengers):
+        trip.passengers.add(profile)
+        trip.empty_spaces = trip.empty_spaces - 1
+        trip.save()
+
+    return redirect('trip-detail', pk)
+
+
+def cancel_book(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('not-register')
+
+    trip = Trip.objects.get(pk=pk)
+    passengers = trip.passengers.all()
+    profile = Profile.objects.get(base_user=request.user.id)
+
+    if profile in passengers:
+        trip.passengers.remove(profile)
+        trip.empty_spaces = trip.empty_spaces + 1
+        trip.save()
+
+    return redirect('trip-detail', pk)
+
+
+
+

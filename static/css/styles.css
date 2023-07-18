@@ -1095,3 +1095,13 @@ h1.page-title {
 .bron {
   background-color: #ffe066; /* Желтый цвет (более насыщенный) */
 }
+
+/* убираем подчеркивания и синий цвет со ссылки в моих поездках */
+#booked a {
+  text-decoration: none;
+  color: inherit;
+}
+#created a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -22,6 +22,9 @@ class ClientTwo(Client):
         return data[0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]['Address']['Components']
 
 
+client1 = ClientTwo(ya_api_key)
+
+
 def geocode_to_str(code):
     return {'longitude': str(code[0]), 'latitude': str(code[1])}
 
@@ -31,7 +34,6 @@ def str_to_geocode(code):
 
 
 def get_geocode(address):
-    client1 = ClientTwo(ya_api_key)
     try:
         code = client1.coordinates(address)
     except exceptions.YandexGeocoderException:
@@ -43,7 +45,6 @@ def get_geocode(address):
 
 
 def get_address(code):
-    client1 = ClientTwo(ya_api_key)
     try:
         address = client1.address(code)
     except exceptions.YandexGeocoderException:
@@ -55,7 +56,6 @@ def get_address(code):
 
 
 def get_full_address_description(code):
-    client1 = ClientTwo(ya_api_key)
     try:
         address_description = client1.get_adress_description(code[0], code[1])
     except exceptions.YandexGeocoderException:

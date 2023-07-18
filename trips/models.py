@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from users.models import Profile
 
-smoke = [
+trip_smoke = [
         ('LS', 'Можно курить'),
         ('IS', 'Можно курить, но не в машине'),
         ('NS', 'Курить нельзя'),
     ]
-animals = [
+trip_animals = [
         ('LA', 'Можно с животными'),
         ('IA', 'Наличие животных обсуждаемо'),
         ('NA', 'Без животных'),
@@ -35,8 +35,8 @@ class Trip(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Водитель",
                               related_name="user_driver")
     passengers = models.ManyToManyField(Profile, blank=True, verbose_name="Пассажиры", related_name="user_passengers")
-    can_smoke = models.CharField(max_length=2, choices=smoke, default='IS', verbose_name='Можно ли курить')
-    with_animals = models.CharField(max_length=2, choices=animals, default='IA', verbose_name='Можно ли с животными')
+    can_smoke = models.CharField(max_length=2, choices=trip_smoke, default='IS', verbose_name='Можно ли курить')
+    with_animals = models.CharField(max_length=2, choices=trip_animals, default='IA', verbose_name='Можно ли с животными')
 
 
     def __str__(self):

@@ -43,8 +43,8 @@
                             <p class="result-info"><span class="bold-text">Время:</span> {{ trip.time }}</p>
                             <p class="result-info"><span class="bold-text">Свободные места:</span> {{ trip.empty_spaces }}</p>
                               <div class="trip-features">
-                                <div class="trip-feature-smoke">{{ trip.can_smoke|smoke_tag }}</div>
-                                <div class="trip-feature-animals">{{ trip.with_animals|animals_tag }}</div>
+                                <div class="trip-feature-smoke">{{ trip.can_smoke|trip_tag }}</div>
+                                <div class="trip-feature-animals">{{ trip.with_animals|trip_tag }}</div>
                               </div>
                           </div>
                         </a>

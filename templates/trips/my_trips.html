@@ -22,36 +22,51 @@
     </div>
 
     <div id="booked" class="tab active">
-      <div class="card" onclick="handleCardClick('card1')">
-        <h2>Откуда: Москва</h2>
-        <h2>Куда: Санкт-Петербург</h2>
-        <h3>Дата: 2023-07-20</h3>
-        <span class="completed">Завершенная</span>
-      </div>
-      <div class="card" onclick="handleCardClick('card2')">
-        <h2>Откуда: Лондон</h2>
-        <h2>Куда: Париж</h2>
-        <h3>Дата: 2023-07-25</h3>
-        <span class="cancelled">Отменённая</span>
-      </div>
+      {% for trip in passenger %}
+      <a href="{% url 'trip-detail' trip.id %}">
+        <div class="card">
+            <h2>Откуда: {{ trip.locale_from }}</h2>
+            <h2>Куда: {{ trip.locale_to }}</h2>
+            <h3>Дата: {{ trip.date }}</h3>
+            <h3>Время: {{ trip.time }}</h3>
+              {% if trip.is_finished %}
+                <span class="completed">Завершенная</span>
+              {% endif %}
+              {% if trip.in_process %}
+                <span class="in-progress">В пути</span>
+              {% endif %}
+              {% if not trip.in_process and not trip.is_finished %}
+                <span class="bron">Забронированная</span>
+              {% endif %}
+        </div>
+        </a>
+      {% endfor %}
     </div>
 
     <div id="created" class="tab">
-      <div class="card" onclick="handleCardClick('card3')">
-        <h2>Откуда: Нью-Йорк</h2>
-        <h2>Куда: Лос-Анджелес</h2>
-        <h3>Дата: 2023-08-01</h3>
-        <span class="bron">Забронированная</span>
-      </div>
-      <div class="card" onclick="handleCardClick('card4')">
-        <h2>Откуда: Рим</h2>
-        <h2>Куда: Флоренция</h2>
-        <h3>Дата: 2023-08-05</h3>
-        <span class="in-progress">В процессе</span>
-      </div>
+      {% for trip in own %}
+      <a href="{% url 'trip-detail' trip.id %}">
+        <div class="card">
+            <h2>Откуда: {{ trip.locale_from }}</h2>
+            <h2>Куда: {{ trip.locale_to }}</h2>
+            <h3>Дата: {{ trip.date }}</h3>
+            <h3>Время: {{ trip.time }}</h3>
+              {% if trip.is_finished %}
+                <span class="completed">Завершенная</span>
+              {% endif %}
+              {% if trip.in_process %}
+                <span class="in-progress">В пути</span>
+              {% endif %}
+              {% if not trip.in_process and not trip.is_finished %}
+                <span class="cancelled">Не начата</span>
+              {% endif %}
+        </div>
+        </a>
+      {% endfor %}
     </div>
 
   </div>
+
 
 {% endblock%}
 
