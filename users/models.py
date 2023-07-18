@@ -29,7 +29,7 @@ class Profile(models.Model):
     prefer_music = models.CharField(max_length=2, choices=music, default='IM')
     prefer_smoke = models.CharField(max_length=2, choices=smoke, default='IS')
     prefer_animals = models.CharField(max_length=2, choices=animals, default='IA')
-    base_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь",
+    base_user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь",
                              related_name="user_profile")
 
     def __str__(self):

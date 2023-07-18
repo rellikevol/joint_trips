@@ -70,6 +70,7 @@ def trips_search(request):
 def add_trip(request):
     if not request.user.is_authenticated:
         return redirect('not-register')
+
     if request.method == 'POST':
         add_form = AddTripForm(request.POST)
 
@@ -123,19 +124,13 @@ class TripDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        driver_profile = Profile.objects.get(base_user=context['trip'].owner)
 
-        profiles = []
-        for i in context['trip'].passengers.all():
-            profiles.append(Profile.objects.get(base_user=i))
+        passengers = context['trip'].passengers.all()
 
-        if len(profiles) > 0:
+        if passengers:
             context['has_passengers'] = True
-            context['user_profiles'] = profiles
+            context['passengers_profiles'] = passengers
         else:
             context['has_passengers'] = False
 
-        context['driver_profile'] = driver_profile
         return context
-
-

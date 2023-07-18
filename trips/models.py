@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from users.models import Profile
 
 smoke = [
         ('LS', 'Можно курить'),
@@ -31,9 +32,9 @@ class Trip(models.Model):
     in_process = models.BooleanField(default=False, verbose_name='Поездка а процессе')
     # уже приехали
     is_finished = models.BooleanField(default=False, verbose_name='Завершенная')
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Водитель",
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Водитель",
                               related_name="user_driver")
-    passengers = models.ManyToManyField(User, null=True, blank=True, verbose_name="Пассажиры", related_name="user_passengers")
+    passengers = models.ManyToManyField(Profile, blank=True, verbose_name="Пассажиры", related_name="user_passengers")
     can_smoke = models.CharField(max_length=2, choices=smoke, default='IS', verbose_name='Можно ли курить')
     with_animals = models.CharField(max_length=2, choices=animals, default='IA', verbose_name='Можно ли с животными')
 

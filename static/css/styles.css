@@ -656,14 +656,13 @@ footer {
 
 
 .passenger-name {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 10px;
   transition: transform 0.3s;
 }
 
-.passenger-avatar:hover,
-.passenger-name:hover {
+.passenger-avatar:hover {
   transform: scale(1.1);
 }
 

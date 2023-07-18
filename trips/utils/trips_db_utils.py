@@ -49,7 +49,8 @@ def append_trip(context):
                                time=context['time'],
                                spaces=context['space'],
                                empty_spaces=context['space'],
-                               owner=context['owner'],
+                               is_active=True,
+                               owner=context['owner'].user_profile,
                                can_smoke=context['form'].cleaned_data['can_smoke'],
                                with_animals=context['form'].cleaned_data['with_animals']
                                )

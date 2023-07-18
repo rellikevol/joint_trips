@@ -36,17 +36,16 @@
     <div class="driver-card">
     <h2>Водитель:</h2>
     <a href="#">
-      <img class="driver-avatar" src="{{ driver_profile.profile_photo.url }}" alt="Фото водителя">
+      <img class="driver-avatar" src="{{ trip.owner.profile_photo.url }}" alt="Фото водителя">
     </a>
-    <p class="driver-name">{{ trip.owner.username }}</p>
-  </div>
+    <p class="driver-name">{{ trip.owner.base_user.username }}</p>
 
-     <div class="passengers-card">
+<div class="passengers-card">
     <h2>Пассажиры:</h2>
     <div class="passenger-list">
 
       {% if has_passengers %}
-        {% for profile in user_profiles %}
+        {% for profile in passengers_profiles %}
           <div class="passenger">
             <a href="#">
               <img class="passenger-avatar" src="{{ profile.profile_photo.url }}" alt="Аватар пассажира">
@@ -60,7 +59,6 @@
       <!------------------------------------------>
     </div>
   </div>
-
 
 </div>
 
