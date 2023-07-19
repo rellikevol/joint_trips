@@ -39,3 +39,33 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "Профиль пользователя"
         verbose_name_plural = "Профили пользователей"
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Отправитель",
+                              related_name='sender')
+    recipient = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Получатель",
+                              related_name='recipient')
+    text = models.TextField(verbose_name='Сообщение')
+    date = models.DateField(auto_now=True)
+    time = models.TimeField(auto_now=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.sender.base_user.username} to {self.recipient.base_user.username}' \
+               f' at {self.date} {self.time}'
+
+    class Meta:
+        verbose_name = "Сообщение"
+        verbose_name_plural = "Сообщения"
+
+class Chat(models.Model):
+    members = models.ManyToManyField(Profile, verbose_name="Участники")
+    messages = models.ManyToManyField(Message, verbose_name='Сообщения')
+
+    def __str__(self):
+        return f'Чат {self.pk}'
+
+    class Meta:
+        verbose_name = "Чат"
+        verbose_name_plural = "Чаты"

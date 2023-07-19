@@ -1105,3 +1105,66 @@ h1.page-title {
   text-decoration: none;
   color: inherit;
 }
+
+/* карточка сообщения */
+
+/* Стили для карточки сообщения */
+.card1 {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 10px;
+  transition: none; /* Удаление анимации при наведении */
+}
+
+/* Стили для заголовка карточки (имя отправителя) */
+.card1-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Стили для даты и времени */
+.card1-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* Стили для текста сообщения */
+.card1-text.message {
+  font-size: 16px;
+  color: #000;
+  /* Ограничение высоты и добавление прокрутки, если сообщение слишком длинное */
+  max-height: 100px;
+  overflow: auto;
+}
+
+/* Удалите стили для контейнера сообщений */
+#post-container {
+  /* Никаких специальных стилей для контейнера */
+}
+
+/* Удалите стили для элемента с классом "col-md-4" */
+/* Никаких специальных стилей для элементов */
+
+
+/* Стили для класса my-message */
+/* Стили для класса my-message */
+.my-message {
+    background-color: blue;
+    color: white; /* Чтобы текст был виден на синем фоне */
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/* Стили для класса not-my-message */
+.message-other {
+    background-color: yellow;
+    color: black; /* Чтобы текст был виден на желтом фоне */
+    padding: 10px;
+    margin-bottom: 5px;
+}

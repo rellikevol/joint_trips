@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ff8800;
+    color: #fff;
+    padding: 10px;
+}
+
+.username {
+    font-size: 24px; /* Увеличен размер имени */
+    font-weight: bold; /* Добавлен жирный шрифт для имени */
+}
+
+.links {
+    display: flex;
+}
+
+.links a {
+    color: #fff;
+    font-size: 18px; /* Увеличен размер ссылок */
+    font-weight: bold; /* Добавлен жирный шрифт для ссылок */
+    text-decoration: none;
+    margin-left: 20px;
+}
+.messages {
+    /* Стили для блока с сообщениями */
+    padding: 20px;
+    background-color: #f9f9f9; /* Изменен цвет фона блока */
+    height: 60vh; /* Задаем высоту блока с сообщениями */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку, если содержимое превышает высоту блока */
+}
+
+
+.message {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    max-width: calc(33vw - 20px); /* Максимальная ширина сообщений пользователей */
+}
+
+.received {
+    background-color: #f0f0f0;
+margin-right: auto;
+}
+
+.sent {
+    background-color: #c3e2ff; /* Светло-голубой цвет для сообщений пользователя */
+    color: #000; /* Изменим цвет текста на черный */
+margin-left: auto; /* Отступ от правого края */
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 100px; /* Задаем высоту .input-container */
+}
+
+.input-field {
+    flex: 1;
+    padding: 5px;
+    font-size: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    white-space: pre-wrap; /* Добавляем возможность переноса текста */
+}
+
+.send-button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #ff8800;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

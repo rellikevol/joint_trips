@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <link rel="stylesheet" href="{% static 'css/messages_style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="links">
+            <a href="{% url 'index-page' %}">Главная</a>
+            <a href="{% url 'how-it-works' %}">Как это работает</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'add-trip' %}">Добавить поездку</a>
+            <a href="{% url 'profile' request.user.user_profile.id %}">Профиль</a>
+            <a href="{% url 'my-trips' %}">Мои поездки</a>
+            <a href="{% url 'logout' %}">Выход</a>
+            {% else %}
+            <a href="{% url 'register' %}">Регистрация</a>
+            <a href="{% url 'login' %}">Вход</a>
+            {% endif %}
+        </div>
+        <div class="username">Чат с {{ request.user.username }}</div>
+    </div>
+
+    <div class="messages" id="messages">
+
+    </div>
+
+        <form action="{% url 'add-message' id %}" method="post" class="input-container">
+            {% csrf_token %}
+            <input type="text" class="input-field" name="user_message" id="user_message" placeholder="Введите сообщение" required>
+            <button type="submit" class="send-button">Отправить</button>
+        </form>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+        // Функция для получения списка постов с помощью AJAX
+        function getPosts() {
+            var id = {{ id }}; // Получаем значение id из контекста и сохраняем в переменной id
+            $.ajax({
+                url: 'get_chat/' + id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                     var container = $('#messages');
+                     container.empty();
+                    // Если данные успешно получены, то создаем карточки для каждого поста
+                    $.each(response, function(index, post) {
+                        var card;
+                        if (post.sender_id === {{ who }}) {
+                            // Используем класс my-message и my-card, если sender равен who
+                            card = '<div class="message sent">' + post.message + '</div>'
+                        } else {
+                            // Используем класс not-my-message и not-my-card в противном случае
+                            card = '<div class="message received">' + post.message + '</div>'
+                        }
+
+                        container.append(card);
+                    });
+
+                }
+            });
+        }
+
+
+        // Вызываем функцию для получения списка постов с периодичностью в 1 секунду
+        setInterval(getPosts, 1000);
+
+        // Вызываем функцию для получения списка постов
+        getPosts();
+
+    </script>
+
+
+</html>
