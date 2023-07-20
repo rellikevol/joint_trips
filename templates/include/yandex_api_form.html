@@ -1,3 +1,4 @@
 {% load static %}
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<3908844a-1c70-4c07-b96d-6811c55c2fba>" type="text/javascript"></script>
+{% load my_tags %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<{{ yandex_key }}>" type="text/javascript"></script>
 <script src="{% static 'js/suggest.js' %}" type="text/javascript"></script>
