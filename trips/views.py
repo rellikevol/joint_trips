@@ -139,15 +139,18 @@ class TripDetailView(generic.DetailView):
         else:
             context['has_passengers'] = False
 
-        if context['trip'].owner.id == self.request.user.user_profile.id:
-            context['is_owner'] = True
+        if self.request.user.is_authenticated:
+            if context['trip'].owner.id == self.request.user.user_profile.id:
+                context['is_owner'] = True
+            else:
+                context['is_owner'] = False
+
+                if self.request.user.user_profile in passengers:
+                    context['have_sit'] = True
+                else:
+                    context['have_sit'] = False
         else:
             context['is_owner'] = False
-
-            if self.request.user.user_profile in passengers:
-                context['have_sit'] = True
-            else:
-                context['have_sit'] = False
 
         return context
 
@@ -183,6 +186,33 @@ def cancel_book(request, pk):
 
     return redirect('trip-detail', pk)
 
+def delete_trip(request, pk):
+    trip = Trip.objects.get(pk=pk)
+
+    if trip.owner == Profile.objects.get(base_user=request.user):
+        trip.delete()
+        return redirect('my-trips')
+    else:
+        return redirect('trip-detail', pk)
+
+def start_trip(request, pk):
+    trip = Trip.objects.get(pk=pk)
+
+    if trip.owner == Profile.objects.get(base_user=request.user):
+        trip.in_process = True
+        trip.save()
+
+    return redirect('trip-detail', pk)
+
+def end_trip(request, pk):
+    trip = Trip.objects.get(pk=pk)
+
+    if trip.owner == Profile.objects.get(base_user=request.user):
+        trip.in_process = False
+        trip.is_finished = True
+        trip.save()
+
+    return redirect('trip-detail', pk)
 
 
 

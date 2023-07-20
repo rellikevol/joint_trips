@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+Мои сообщения
+{% endblock %}
+
+{% block head%}
+{% endblock%}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+
+    <div class="dialogs-container">
+        {% for chat in my_chats %}
+            <a href="{% url 'chat' chat.chat %}" class="dialog-card">
+                <div class="dialog-info">
+                    <h3>{{ chat.reciver.base_user.username }}</h3>
+                    {% if chat.unread > 0 %}
+                        <span class="unread-messages">{{ chat.unread }} непрочитанных сообщения</span>
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock%}

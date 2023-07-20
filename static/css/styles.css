@@ -553,6 +553,16 @@ footer {
 }
 
 .trip-card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trip-card-footer a {
+    display: inline-block;
+}
+
+
+.trip-card-footer {
   text-align: center;
 }
 
@@ -1167,4 +1177,49 @@ h1.page-title {
     color: black; /* Чтобы текст был виден на желтом фоне */
     padding: 10px;
     margin-bottom: 5px;
+}
+
+/* стили страницы мои сообщения */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dialogs-container {
+    max-width: 75%; /* Ограничим ширину блока диалогов до 3/4 страницы */
+    margin: 0 auto; /* Центрируем блок диалогов по горизонтали */
+}
+
+.dialog-card {
+    display: block;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    color: #000; /* Изменяем цвет текста ссылок */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Добавляем анимацию перехода */
+}
+
+.dialog-card:hover {
+    background-color: #e0e0e0; /* Изменяем цвет фона при наведении */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень при наведении */
+}
+
+.dialog-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dialog-info h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.unread-messages {
+    font-size: 14px;
+    color: #666;
 }

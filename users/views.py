@@ -87,19 +87,38 @@ def edit_profile(request):
 
 
 def chat(request, pk):
-    return render(request, 'users/chat.html', context={'id': pk,
-                                                       'who': request.user.id})
+    chat = Chat.objects.get(pk=pk)
+    user_profile = Profile.objects.get(base_user=request.user)
+    riciver = 0
+
+    messages = chat.messages.filter(recipient=user_profile, is_read=False)
+
+    for i in messages:
+        i.is_read = True
+        i.save()
+
+    for i in chat.members.all():
+        if i.id != request.user.id:
+            riciver = i
+
+    if user_profile in chat.members.all():
+        return render(request, 'users/chat.html', context={'id': pk, 'riciver': riciver,
+                                                           'who': request.user.id})
+    else:
+        return redirect('profile', user_profile.id)
 
 
 def get_chat(request, pk):
     chat = Chat.objects.get(pk=pk).messages.all()
+
     data = []
-    for i in chat:
+    for i in chat.order_by('pk'):
         data.append({'sender': i.sender.base_user.username,
                      'sender_id': i.sender.base_user.id,
                      'recipient': i.recipient.base_user.username,
                      'date': i.date, 'time': i.time, 'message': i.text})
     return JsonResponse(data, safe=False)
+
 
 def append_message(request, pk):
     chat = Chat.objects.get(pk=pk)
@@ -115,3 +134,43 @@ def append_message(request, pk):
     chat.messages.add(message)
     chat.save()
     return redirect('chat', pk)
+
+
+def create_chat(request):
+    riciver_id = request.POST.get('riciver_id')
+    print(riciver_id)
+    chats = Chat.objects.all()
+    riciver = Profile.objects.get(pk=riciver_id)
+    user_profile = Profile.objects.get(base_user=request.user)
+
+    for i in chats:
+        if riciver in i.members.all() and user_profile in i.members.all():
+            return redirect('chat', i.id)
+
+    new = Chat.objects.create()
+    new.members.add(riciver)
+    new.members.add(user_profile)
+    new.save()
+
+    return redirect('chat', new.id)
+
+
+def my_messages(request):
+    if not request.user.is_authenticated:
+        return redirect('not-register')
+
+    chats = Chat.objects.all()
+    profile = Profile.objects.get(base_user=request.user)
+    my_chats = []
+    for i in chats:
+        profiles = i.members.all()
+        if profile in profiles:
+            reciver = 0
+            for x in profiles:
+                if x.base_user != request.user:
+                    reciver = x
+            chat_user = {'chat': i.id, 'reciver': reciver,
+                         'unread': len(i.messages.filter(recipient=profile, is_read=False))}
+            my_chats.append(chat_user)
+
+    return render(request, 'users/my_messages.html', {'my_chats': my_chats})

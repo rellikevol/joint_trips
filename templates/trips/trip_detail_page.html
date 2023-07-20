@@ -30,14 +30,14 @@
         {% if is_owner %}
             {% if not trip.is_finished %}
                 {% if trip.in_process %}
-                    <a href="#">
+                    <a href="{% url 'end-trip' trip.id %}">
                         <button class="button">Завершить</button>
                     </a>
                 {% else %}
-                    <a href="#">
+                    <a href="{% url 'delete-trip' trip.id %}">
                         <button class="button">Удалить</button>
                     </a>
-                    <a href="#">
+                    <a href="{% url 'start-trip' trip.id %}">
                         <button class="button">Начать</button>
                     </a>
                 {% endif %}
@@ -49,6 +49,11 @@
                         <a href="{% url 'cancel-trip' trip.id %}">
                             <button class="button">Отменить бронь</button>
                         </a>
+                        <form action="{% url 'create-chat' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="riciver_id" name="riciver_id" value="{{ trip.owner.id }}" />
+                                <button type="submit" class="button">Написать водителю</button>
+                            </form>
                     {% endif %}
                 {% else %}
                     {% if not trip.is_finished and not trip.in_process %}

@@ -32,6 +32,14 @@
       <div class="edit-profile">
         <a href="{% url 'edit-profile' %}" class="edit-profile-button">Редактировать профиль</a>
       </div>
+      {% else %}
+        <div class="edit-profile">
+          <form action="{% url 'create-chat' %}" method="post">
+            {% csrf_token %}
+              <input type="hidden" id="riciver_id" name="riciver_id" value="{{ profile.id }}" />
+              <button type="submit" class="edit-profile-button">Написать пользователю</button>
+            </form>
+      </div>
       {% endif %}
     </div>
   </div>

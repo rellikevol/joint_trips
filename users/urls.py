@@ -11,5 +11,7 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit-profile'),
     path('chat/<int:pk>', views.chat, name='chat'),
     path('chat/get_chat/<int:pk>', views.get_chat, name='get-chat-json'),
-    path('chat/create_message/<int:pk>', views.append_message, name='add-message')
+    path('chat/create_message/<int:pk>', views.append_message, name='add-message'),
+    path('chat/create_chat', views.create_chat, name='create-chat'),
+    path('my_messages/', views.my_messages, name='my-messages')
 ]

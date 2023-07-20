@@ -25,6 +25,7 @@
         <li><a href="{% url 'add-trip' %}">Добавить поездку</a></li>
         <li><a href="{% url 'profile' request.user.user_profile.id %}">Профиль</a></li>
         <li><a href="{% url 'my-trips' %}">Мои поездки</a></li>
+        <li><a href="{% url 'my-messages' %}">Мои диалоги</a></li>
         <li><a href="{% url 'logout' %}">Выход</a></li>
         {% else %}
         <li><a href="{% url 'register' %}">Регистрация</a></li>

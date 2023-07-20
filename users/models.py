@@ -61,7 +61,7 @@ class Message(models.Model):
 
 class Chat(models.Model):
     members = models.ManyToManyField(Profile, verbose_name="Участники")
-    messages = models.ManyToManyField(Message, verbose_name='Сообщения')
+    messages = models.ManyToManyField(Message, verbose_name='Сообщения', blank=True)
 
     def __str__(self):
         return f'Чат {self.pk}'

@@ -17,13 +17,14 @@
             <a href="{% url 'add-trip' %}">Добавить поездку</a>
             <a href="{% url 'profile' request.user.user_profile.id %}">Профиль</a>
             <a href="{% url 'my-trips' %}">Мои поездки</a>
+            <a href="{% url 'my-messages' %}">Мои диалоги</a>
             <a href="{% url 'logout' %}">Выход</a>
             {% else %}
             <a href="{% url 'register' %}">Регистрация</a>
             <a href="{% url 'login' %}">Вход</a>
             {% endif %}
         </div>
-        <div class="username">Чат с {{ request.user.username }}</div>
+        <div class="username">Чат с {{ riciver.base_user.username }}</div>
     </div>
 
     <div class="messages" id="messages">
