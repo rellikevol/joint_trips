@@ -1181,11 +1181,6 @@ h1.page-title {
 
 /* стили страницы мои сообщения */
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
 .dialogs-container {
     max-width: 75%; /* Ограничим ширину блока диалогов до 3/4 страницы */

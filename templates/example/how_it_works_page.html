@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Как это работает?
 {% endblock %}
@@ -16,22 +16,22 @@
     <section class="how-it-works">
       <h2>Как это работает</h2>
       <div class="step">
-        <img src="step1.png" alt="Шаг 1">
+        <img src="{% static 'img/step.png' %}" alt="Шаг 1">
         <h3>1. Зарегистрируйтесь</h3>
         <p>Создайте учетную запись на BlaBlaCar и заполните необходимую информацию.</p>
       </div>
       <div class="step">
-        <img src="step2.png" alt="Шаг 2">
+        <img src="{% static 'img/step1.png' %}" alt="Шаг 2">
         <h3>2. Найдите поездку</h3>
         <p>Используйте поисковую систему BlaBlaCar, чтобы найти подходящую поездку.</p>
       </div>
       <div class="step">
-        <img src="step3.png" alt="Шаг 3">
+        <img src="{% static 'img/step2.png' %}" alt="Шаг 3">
         <h3>3. Бронируйте место</h3>
         <p>Свяжитесь с водителем и забронируйте свое место в автомобиле.</p>
       </div>
       <div class="step">
-        <img src="step4.png" alt="Шаг 4">
+        <img src="{% static 'img/step3.png' %}" alt="Шаг 4">
         <h3>4. Путешествуйте вместе</h3>
         <p>Встретьтесь с водителем и пассажирами в указанном месте и время, и отправляйтесь в путешествие.</p>
       </div>
