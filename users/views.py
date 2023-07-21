@@ -63,7 +63,7 @@ def edit_profile(request):
         if profile_form.is_valid() and user_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('profile', request.user.id)
+            return redirect('profile', request.user.user_profile.id)
         else:
             errors = []
 
