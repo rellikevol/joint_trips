@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.http import require_POST
+
 from users.models import Profile, Chat, Message
 from users.forms import RegistrationForm, ProfileForm, ChangeUserForm
 from django.contrib.auth.forms import UserChangeForm
 from django.http import JsonResponse
+import json
 
 
 # Create your views here.
@@ -87,6 +91,10 @@ def edit_profile(request):
 
 
 def chat(request, pk):
+
+    if not request.user.is_authenticated:
+        return redirect('not-register')
+
     chat = Chat.objects.get(pk=pk)
     user_profile = Profile.objects.get(base_user=request.user)
     riciver = 0
@@ -120,25 +128,34 @@ def get_chat(request, pk):
     return JsonResponse(data, safe=False)
 
 
+@ensure_csrf_cookie
+@require_POST
 def append_message(request, pk):
+    try:
+        data = json.loads(request.body)
+        message = data.get('user_message', None)
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Ошибка в данных JSON.'}, status=400)
+
+    if message is None:
+        return JsonResponse({'error': 'Ошибка в данных JSON.'}, status=400)
+
     chat = Chat.objects.get(pk=pk)
     queryset = chat.members.all()
     recipient = 0
     for i in queryset:
         if i.base_user.id != request.user.id:
             recipient = i
-    message = Message.objects.create(sender=Profile.objects.get(base_user=request.user.id),
-                                     recipient=recipient,
-                                     text=request.POST.get('user_message'))
+    message = Message.objects.create(sender=Profile.objects.get(base_user=request.user.id), recipient=recipient,
+                                     text=message)
     message.save()
     chat.messages.add(message)
     chat.save()
-    return redirect('chat', pk)
+    return JsonResponse({'message': 'Сообщение доставлено.'}, status=200)
 
 
 def create_chat(request):
     riciver_id = request.POST.get('riciver_id')
-    print(riciver_id)
     chats = Chat.objects.all()
     riciver = Profile.objects.get(pk=riciver_id)
     user_profile = Profile.objects.get(base_user=request.user)

@@ -80,3 +80,7 @@ margin-left: auto; /* Отступ от правого края */
     border: none;
     cursor: pointer;
 }
+/* CSS-правило для textarea */
+textarea#user_message {
+  resize: none;
+}

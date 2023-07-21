@@ -31,9 +31,10 @@
 
     </div>
 
-        <form action="{% url 'add-message' id %}" method="post" class="input-container">
+
+        <form action="{% url 'add-message' id %}" method="post" class="input-container" id="message-form" onsubmit="sendMessage(event)">
             {% csrf_token %}
-            <input type="text" class="input-field" name="user_message" id="user_message" placeholder="Введите сообщение" required>
+            <textarea type="text" class="input-field" name="user_message" id="user_message" placeholder="Введите сообщение" required></textarea>
             <button type="submit" class="send-button">Отправить</button>
         </form>
 
@@ -78,6 +79,48 @@
         getPosts();
 
     </script>
+
+<script>
+    function sendMessage(event) {
+        event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+
+        // Собираем данные из полей формы
+        const userMessage = document.getElementById('user_message').value;
+
+        // Создаем объект с данными для отправки на сервер
+        const data = {
+            user_message: userMessage,
+            csrfmiddlewaretoken: '{{ csrf_token }}', // Получаем CSRF-токен из шаблона Django
+        };
+
+        // Выполняем AJAX-запрос на сервер Django
+        fetch("{% url 'add-message' id %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': data.csrfmiddlewaretoken,
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            // Обрабатываем ответ от сервера
+            if (response.ok) {
+                // Очищаем поля формы после успешной отправки
+                document.getElementById('user_message').value = '';
+                // Делаем что-то, если запрос успешен
+                console.log("Сообщение успешно отправлено на сервер.");
+            } else {
+                // Делаем что-то, если запрос неуспешен
+                console.error("Ошибка при отправке сообщения на сервер.");
+            }
+        })
+        .catch(error => {
+            console.error("Произошла ошибка при выполнении запроса:", error);
+        });
+    }
+</script>
+
+
 
 
 </html>
